@@ -1,0 +1,52 @@
+const prisma = require("../config/prismaClient");
+
+async function createUser(username) {
+    return await prisma.user.create({
+        data: {
+            username: username
+        }
+    });
+}
+
+async function getUser(username) {
+    return await prisma.user.findUnique({
+        where: {
+            username
+        }
+    })
+}
+
+async function deleteRecords(id) {
+    return await prisma.game.deleteMany({
+      where: {
+        userId: id
+      }
+    });
+  }
+  
+
+async function gameRecord(record, id) {
+    await deleteRecords(id);
+    return await prisma.game.create({
+        data: {
+            record: record,
+            userId: id
+        }
+    });
+}
+
+async function fetchGameRecord() {
+    return await prisma.game.findMany({
+      orderBy: {
+        record: 'desc'
+      }
+    });
+}  
+
+
+module.exports = {
+    createUser,
+    gameRecord,
+    getUser,
+    fetchGameRecord
+}
