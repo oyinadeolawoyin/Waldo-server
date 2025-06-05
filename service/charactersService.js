@@ -32,7 +32,6 @@ async function seedCharacters() {
 }  
 
 async function fetchCharacters() {
-    await seedCharacters()
     return prisma.characters.findMany();
 }
 
