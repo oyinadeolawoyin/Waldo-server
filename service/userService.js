@@ -23,7 +23,7 @@ async function gameRecord(record, userId) {
             data: {
               record: record,
               user: {
-                connect: { userId }
+                connect: { id: userId }
               }
             }
         });          
