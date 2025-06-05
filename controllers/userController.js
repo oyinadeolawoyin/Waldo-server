@@ -3,19 +3,18 @@ const userService = require("../service/userService");
 async function createUser(req, res) {
     const { username } = req.body;
     try {
-        await userService.createUser(username);
-        res.status(200).json({ message: "user added!"}) 
+        const user = await userService.createUser(username);
+        res.status(200).json({ user: user }) 
     } catch (error) {
         res.status(500).json({ error: "Something went wrong." });
     }
 }
 
 async function createGameRecord(req, res) {
-    const { username, record } = req.body;
+    const { userId, record } = req.body;
 
     try {
-        const user = await userService.getUser(username);
-        const records = await userService.gameRecord(record, user.id);
+        const records = await userService.gameRecord(record, userId);
         res.status(200).json({ records: records });
     } catch(error) {
         res.status(500).json({ message: error.message || "Something went wrong."})

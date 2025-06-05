@@ -8,14 +8,6 @@ async function createUser(username) {
     });
 }
 
-async function getUser(username) {
-    return await prisma.user.findUnique({
-        where: {
-            username
-        }
-    })
-}
-
 async function deleteRecords(id) {
     return await prisma.game.deleteMany({
       where: {
@@ -25,12 +17,12 @@ async function deleteRecords(id) {
   }
   
 
-async function gameRecord(record, id) {
+async function gameRecord(record, userId) {
     await deleteRecords(id);
     return await prisma.game.create({
         data: {
             record: record,
-            userId: id
+            userId: userId
         }
     });
 }
