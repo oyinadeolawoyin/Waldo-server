@@ -1,6 +1,6 @@
-const { fetchCharacters } = require("../service/charactersService");
+const { seedCharacters } = require("../service/charactersService");
 
-fetchCharacters()
+seedCharacters()
   .then(() => {
     console.log("✅ Seeding completed!");
     process.exit(0);

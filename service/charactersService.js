@@ -36,5 +36,6 @@ async function fetchCharacters() {
 }
 
 module.exports = {
-    fetchCharacters
+    fetchCharacters,
+    seedCharacters
 }
