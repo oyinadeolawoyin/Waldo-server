@@ -18,7 +18,7 @@ async function deleteRecords(id) {
   
 
 async function gameRecord(record, userId) {
-    await deleteRecords(id);
+    await deleteRecords(userId);
     return await prisma.game.create({
         data: {
             record: record,
