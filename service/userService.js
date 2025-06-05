@@ -39,6 +39,5 @@ async function fetchGameRecord() {
 module.exports = {
     createUser,
     gameRecord,
-    getUser,
     fetchGameRecord
 }
