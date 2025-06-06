@@ -33,9 +33,17 @@ async function fetchGameRecord() {
     return await prisma.game.findMany({
       orderBy: {
         record: 'desc'
+      },
+      include: {
+        user: {
+          select: {
+            username: true
+          }
+        }
       }
     });
-}  
+}
+  
 
 
 module.exports = {
