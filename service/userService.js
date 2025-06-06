@@ -32,7 +32,7 @@ async function gameRecord(record, userId) {
 async function fetchGameRecord() {
     return await prisma.game.findMany({
       orderBy: {
-        record: 'desc'
+        record: 'asc' 
       },
       include: {
         user: {
