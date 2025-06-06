@@ -17,30 +17,33 @@ async function deleteRecords(id) {
   }
   
 
-async function gameRecord(record, userId) {
+  async function gameRecord(record, userId) {
     await deleteRecords(userId);
+  
     return await prisma.game.create({
-            data: {
-              record: record,
-              user: {
-                connect: { id: userId }
-              }
-            }
-        });          
+      data: {
+        record: record,
+        user: {
+          connect: { id: userId }
+        }
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true
+          }
+        }
+      }
+    });
 }
+  
 
 async function fetchGameRecord() {
     return await prisma.game.findMany({
       orderBy: {
         record: 'asc' 
       },
-      include: {
-        user: {
-          select: {
-            username: true
-          }
-        }
-      }
     });
 }
   
